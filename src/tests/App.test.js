@@ -1,12 +1,12 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import renderWithRouter from '../renderWithRouter';
-import App from '../App.js';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react-dom/test-utils';
+import renderWithRouter from '../renderWithRouter';
+import App from '../App';
 
 describe('Teste das rotas do App.js', () => {
-  it('O primeiro link deve possuir o texto Home, e ao ser clicada é redirecionada para a URL "/"', () => {
+  it('O link deve possuir o texto Home, e redireciona para URL "/"', () => {
     const { history } = renderWithRouter(<App />);
 
     const homeLink = screen.getByRole('link', { name: 'Home' });
@@ -14,9 +14,9 @@ describe('Teste das rotas do App.js', () => {
 
     userEvent.click(homeLink);
     const { pathname } = history.location;
-    expect(pathname).toBe('/')
+    expect(pathname).toBe('/');
   });
-  it('O segundo link deve possuir o texto About, e ao ser clicada é redirecionada para a URL "/about"', () => {
+  it('O link deve possuir o texto About, e redireciona para URL "/about"', () => {
     const { history } = renderWithRouter(<App />);
 
     const aboutLink = screen.getByRole('link', { name: 'About' });
@@ -24,9 +24,9 @@ describe('Teste das rotas do App.js', () => {
 
     userEvent.click(aboutLink);
     const { pathname } = history.location;
-    expect(pathname).toBe('/about')
+    expect(pathname).toBe('/about');
   });
-  it('O terceiro link deve possuir o texto Favorite Pokémons, e ao ser clicada é redirecionada para a URL "/favorites"', () => {
+  it('O link deve possuir o texto Favorite Pokémons, e redireciona para URL "/favorites"', () => {
     const { history } = renderWithRouter(<App />);
 
     const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
@@ -34,7 +34,7 @@ describe('Teste das rotas do App.js', () => {
 
     userEvent.click(favoriteLink);
     const { pathname } = history.location;
-    expect(pathname).toBe('/favorites')
+    expect(pathname).toBe('/favorites');
   });
   it('Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida', () => {
     const { history } = renderWithRouter(<App />);
@@ -44,7 +44,4 @@ describe('Teste das rotas do App.js', () => {
     const notFoundTitle = screen.getByLabelText('Crying emoji');
     expect(notFoundTitle).toBeInTheDocument();
   });
-})
-
-
-
+});
