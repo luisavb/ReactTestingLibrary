@@ -26,7 +26,7 @@ describe('Teste das rotas do App.js', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
-  it('O link deve possuir o texto Favorite Pokémons, e redireciona para URL "/favorites"', () => {
+  it('O link possui texto Favorite Pokémons, e redireciona para URL "/favorites"', () => {
     const { history } = renderWithRouter(<App />);
 
     const favoriteLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
@@ -36,10 +36,10 @@ describe('Teste das rotas do App.js', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
-  it('Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida', () => {
+  it('Teste se a aplicação é redirecionada para a página Not Found', () => {
     const { history } = renderWithRouter(<App />);
 
-    act(() => { history.push('/pagina/que-nao-existe/') });
+    act(() => { history.push('/pagina/que-nao-existe/'); });
 
     const notFoundTitle = screen.getByLabelText('Crying emoji');
     expect(notFoundTitle).toBeInTheDocument();
