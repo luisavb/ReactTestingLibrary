@@ -106,7 +106,7 @@ describe('Teste componente Pokedex.js', () => {
     expect(heading).toBeInTheDocument();
   });
 
-  it('Teste do (btn de fltr) e próximo pokémon é exibido quando o btn é clicado', () => {
+  it('Teste se prox pokémon é exibido qdo o btn é clicado, e apenas 1 é mostrado', () => {
     renderWithRouter(<Pokedex
       isPokemonFavoriteById={ teste }
       pokemons={ pokemons }
@@ -116,48 +116,43 @@ describe('Teste componente Pokedex.js', () => {
 
     userEvent.click(button);
 
-    const pokemonInTheScreen = screen.getByTestId('pokemon-name');
+    const pokemonInTheScreen = screen.getAllByTestId('pokemon-name');
 
-    expect(pokemonInTheScreen).toHaveTextContent('Charmander'); // 2
+    expect(pokemonInTheScreen[0]).toHaveTextContent('Charmander'); // 2
     userEvent.click(button);
-    expect(pokemonInTheScreen).toHaveTextContent('Ekans'); // 3
+    expect(pokemonInTheScreen[0]).toHaveTextContent('Ekans'); // 3
     userEvent.click(button);
-    expect(pokemonInTheScreen).toHaveTextContent('Alakazam'); // 4
+    expect(pokemonInTheScreen[0]).toHaveTextContent('Alakazam'); // 4
     userEvent.click(button);
-    expect(pokemonInTheScreen).toHaveTextContent('Pikachu'); // 1
+    expect(pokemonInTheScreen[0]).toHaveTextContent('Pikachu'); // 1
 
+    expect(pokemonInTheScreen.length).toBe(1);
+  });
+
+  // it('Teste se é mostrado apenas um pokémon por vez', () => {
+  //   renderWithRouter(<Pokedex
+  //     isPokemonFavoriteById={ teste }
+  //     pokemons={ pokemons }
+  //   />);
+  //   const pokemon = screen.getAllByTestId('pokemon-name');
+  //   expect(pokemon.length).toBe(1);
+  // });
+
+  it('Teste se a Pokédex tem os botões de filtro', () => {
+    renderWithRouter(<Pokedex
+      isPokemonFavoriteById={ teste }
+      pokemons={ pokemons }
+    />);
+    const buttonAll = screen.getByRole('button', { name: 'All' });
+    expect(buttonAll).toBeInTheDocument();
     const buttonType = screen.getAllByTestId('pokemon-type-button');
     expect(buttonType[0]).toHaveTextContent('Electric');
     expect(buttonType[2]).toHaveTextContent('Poison');
     userEvent.click(buttonType[0]);
 
+    const pokemonInTheScreen = screen.getByTestId('pokemon-name');
     expect(pokemonInTheScreen).toHaveTextContent('Pikachu');
   });
-
-  it('Teste se é mostrado apenas um pokémon por vez', () => {
-    renderWithRouter(<Pokedex
-      isPokemonFavoriteById={ teste }
-      pokemons={ pokemons }
-    />);
-    const pokemon = screen.getAllByTestId('pokemon-name');
-    expect(pokemon.length).toBe(1);
-  });
-
-  // it('Teste se a Pokédex tem os botões de filtro', () => {
-  //   renderWithRouter(<Pokedex
-  //     isPokemonFavoriteById={ teste }
-  //     pokemons={ pokemons }
-  //   />);
-  //   const buttonAll = screen.getByRole('button', { name: 'All' });
-  //   expect(buttonAll).toBeInTheDocument();
-  //   const buttonType = screen.getAllByTestId('pokemon-type-button');
-  //   expect(buttonType[0]).toHaveTextContent('Electric');
-  //   expect(buttonType[2]).toHaveTextContent('Poison');
-  //   userEvent.click(buttonType[0]);
-
-  //   const pokemonInTheScreen = screen.getByTestId('pokemon-name');
-  //   expect(pokemonInTheScreen).toHaveTextContent('Pikachu');
-  // });
 
   it('Teste se a Pokédex contém um botão para resetar o filtro', () => {
     renderWithRouter(<Pokedex
