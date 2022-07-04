@@ -1,16 +1,5 @@
-# 🚧 README em construção 🚧
+# Projeto React Testing Library
 
-<!-- Olá, Tryber!
+O projeto consistiu na criação dos testes de forma a apresentar cobertura para toda a aplicação existente. A aplicação React apresenta um lista de pokémon indivualmente com a possibilidade de ver mais detalhes e adicionar como favorito, apresentando também a possibilidade de navegação entre tipos de pokémon e rotas.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
-
-É essencial que você preencha esse documento por conta própria, ok?
-
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
-
--->
+> Os testes foram desenvolvidos utilizando Jest e a biblioteca React Testing Library, juntamente com as bibliotecas React e BrowserRouter nos requisitos bônus.
